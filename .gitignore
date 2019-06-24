@@ -1,0 +1,16 @@
+.cache
+.local
+.bash_logout
+.bash_history
+.gitconfig
+.gitignore.swp
+.profile
+.python_history
+.shell.pre-oh-my-zsh
+.sudo_as_admin_successful
+.viminfo
+.wget-hsts
+.zcompdump
+.zcompdump-DESKTOP-K62F2U1-5.4.2
+.zsh_history
+
