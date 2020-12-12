@@ -118,4 +118,8 @@ fi
 
 alias python=python3
 
+source /home/dev-user/y/google-cloud-sdk/path.bash.inc
+
+export DOCKER_HOST=tcp://localhost:2375
+alias dot='/usr/bin/git --git-dir=/home/dev-user/.dot/ --work-tree=/home/dev-user'
 exec zsh

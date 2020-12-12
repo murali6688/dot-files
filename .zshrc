@@ -4,12 +4,13 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/home/dev-user/.oh-my-zsh"
 ZSH_DISABLE_COMPFIX=true 
+DEFAULT_USER=$USER
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="awesomepanda"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -96,6 +97,7 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+source /home/dev-user/y/google-cloud-sdk/path.zsh.inc
 alias zshconfig="vi ~/.zshrc"
 alias ohmyzsh="vi ~/.oh-my-zsh"
 alias python=python3.7
@@ -147,10 +149,59 @@ cdr () { cd "$(cat ~/.cdr)" && echo " Returned to cached directory location" ; }
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment blue white '%2~'
+  prompt_segment blue white '%1~'
 }
 
 # git dot files
 git_dot_files() {
 	cp -r ~/.* ~/d/Projects/git/dot-files/
 }
+
+# activate venev
+svnv() {
+	source venv/bin/activate
+}
+
+alias ssh_gm='sudo ssh -i /mnt/c/Users/mural/Downloads/good_meals.pem ubuntu@52.66.12.89'
+
+alias ssh_digital='sudo ssh -i /mnt/c/keys/digital.pem mdrip@139.59.77.167'
+
+bq_mk(){
+        bq mk -t --time_partitioning_type=DAY $1 $2
+}
+
+
+bq_show(){
+        bq show --format=prettyjson $1
+}
+
+export DOCKER_HOST=tcp://localhost:2375
+
+alias dkls="docker images --format 'table {{.Repository}}\t{{.Tag}}\t{{.ID}}\t{{.CreatedAt}}\t{{.Size}}'"
+
+export PROJECT_ID="bikeninja-dwh-38964"
+
+alias dkbld="docker build -t gcr.io/${PROJECT_ID}$1 ."
+
+alias aws="sudo ssh -i /mnt/c/Users/mural/Downloads/good_meals.pem ubuntu@15.206.64.224 -Y"
+
+alias scrapy="python -m scrapy"
+
+alias doom="~/.emacs.d/bin/doom"
+
+alias emax='
+export DISPLAY=:0.0
+export LIBGL_ALWAYS_INDIRECT=1
+setxkbmap -layout us
+setsid doom run
+exit
+'
+
+alias explorer="explorer.exe"
+
+alias hbb_central="pushd /mnt/d/Projects/misAutomation/hbb_central"
+
+log_tail(){
+        tail -n 1000 $1 | awk '/ERROR/ {print "\033[31m" $0 "\033[39m"} /INFO/ {print "\033[32m" $0 "\033[39m"}'
+}
+alias startup_services="sudo service cron restart & sudo service postfix restart"
