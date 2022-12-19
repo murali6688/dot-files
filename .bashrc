@@ -116,10 +116,27 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias python=python3
+alias python=python3.9
 
 source /home/dev-user/y/google-cloud-sdk/path.bash.inc
 
 export DOCKER_HOST=tcp://localhost:2375
-alias dot='/usr/bin/git --git-dir=/home/dev-user/.dot/ --work-tree=/home/dev-user'
+alias dot='/usr/bin/git --git-dir=$HOME/.dot/ --work-tree=$HOME'
 exec zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/dev-user/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/dev-user/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/dev-user/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/dev-user/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+alias conda=/home/dev-user/anaconda3/bin/conda

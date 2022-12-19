@@ -159,7 +159,7 @@ git_dot_files() {
 
 # activate venev
 svnv() {
-	source venv/bin/activate
+# source venv/bin/activate  # commented out by conda initialize
 }
 
 alias ssh_gm='sudo ssh -i /mnt/c/Users/mural/Downloads/good_meals.pem ubuntu@52.66.12.89'
@@ -183,7 +183,7 @@ export PROJECT_ID="bikeninja-dwh-38964"
 
 alias dkbld="docker build -t gcr.io/${PROJECT_ID}$1 ."
 
-alias aws="sudo ssh -i /mnt/c/Users/mural/Downloads/good_meals.pem ubuntu@15.206.64.224 -Y"
+#alias aws="sudo ssh -i /mnt/c/Users/mural/Downloads/good_meals.pem ubuntu@15.206.64.224 -Y"
 
 alias scrapy="python -m scrapy"
 
@@ -205,3 +205,28 @@ log_tail(){
         tail -n 1000 $1 | awk '/ERROR/ {print "\033[31m" $0 "\033[39m"} /INFO/ {print "\033[32m" $0 "\033[39m"}'
 }
 alias startup_services="sudo service cron restart & sudo service postfix restart"
+alias make_migrations="python manage.py makemigrations"
+alias migrate="python manage.py migrate"
+alias dataeng="pushd /mnt/d/Projects/misAutomation/dataeng_root"
+alias erpag_audit="mysql --host=13.234.164.132 --port=3306 --user=apphbb --password=WPS@2020 hbb -e 'SOURCE erpag_audit.sql'"
+alias up_audit="mysql --host=13.234.164.132 --port=3306 --user=apphbb --password=WPS@2020 hbb -e 'SOURCE up_audit.sql'"
+alias item_name_check="mysql --host=13.234.164.132 --port=3306 --user=apphbb --password=WPS@2020 hbb -e 'SOURCE item_name_check.sql'"
+alias store_id_check="mysql --host=13.234.164.132 --port=3306 --user=apphbb --password=WPS@2020 hbb -e 'SOURCE store_id_check.sql'"
+alias swiggy_discount_check="mysql --host=13.234.164.132 --port=3306 --user=apphbb --password=WPS@2020 hbb -e ' SOURCE swiggy_discount_config_check.sql; '"
+alias sa_audit="mysql --host=13.234.164.132 --port=3306 --user=apphbb --password=WPS@2020 hbb -e ' SOURCE sa_audit.sql; '"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/dev-user/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/dev-user/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/dev-user/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/dev-user/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
