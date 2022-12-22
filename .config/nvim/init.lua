@@ -64,11 +64,19 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
   use {
-   "goolord/alpha-nvim",
-   config = function()
+    "goolord/alpha-nvim",
+    config = function()
       require("custom.alpha").setup()
-   end,
-}
+    end,
+  }
+
+  -- WhichKey
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("custom.which-key").setup()
+    end,
+  }
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
