@@ -63,38 +63,56 @@ require('packer').startup(function(use)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
-  use ({
-  "echasnovski/mini.nvim",
-   config = function()
-     local starter = require "mini.starter"
-     starter.setup {
-       items = {
-         starter.sections.telescope(),
-       },
-       content_hooks = {
-         starter.gen_hook.adding_bullet(),
-         starter.gen_hook.aligning("center", "center"),
-       },
+  use({
+    "echasnovski/mini.nvim",
+    config = function()
+      local starter = require "mini.starter"
+      starter.setup {
+        items = {
+          starter.sections.telescope(),
+        },
+        content_hooks = {
+          starter.gen_hook.adding_bullet(),
+          starter.gen_hook.aligning("center", "center"),
+        },
       }
-   end,
-})
+    end,
+  })
 
 
   use({
-	  'rose-pine/neovim',
-	  as = 'rose-pine',
-	  config = function()
-		  vim.cmd('colorscheme rose-pine')
-	  end
+    'rose-pine/neovim',
+    as = 'rose-pine',
   })
 
-  use ({
+  use({
     "SmiteshP/nvim-navic",
     requires = "neovim/nvim-lspconfig"
-})
+  })
 
-  use("onedarkfolke/zen-mode.nvim")
+  -- use("onedarkfolke/zen-mode.nvim")
   use("github/copilot.vim")
+
+  -- use "catppuccin/nvim"
+
+  use 'ethanholz/nvim-lastplace'
+
+  use({ 'Mofiqul/vscode.nvim',
+    as = 'vscode',
+    config = function()
+      vim.cmd('colorscheme vscode')
+    end })
+
+  use({
+    'windwp/nvim-ts-autotag',
+    wants = 'nvim-treesitter',
+    event = 'InsertEnter',
+    config = function()
+      require('nvim-ts-autotag').setup{enable = true}
+    end
+
+  })
+
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')

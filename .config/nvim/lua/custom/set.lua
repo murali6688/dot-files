@@ -60,7 +60,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[ colorscheme rose-pine ]]
+vim.cmd 'colorscheme vscode'
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -76,3 +76,27 @@ require('lualine').setup {
     section_separators = '',
   },
 }
+
+-- File browser setting
+vim.api.nvim_set_keymap(
+  "n",
+  "<space>fb",
+  ":Telescope file_browser <CR>",
+  { noremap = true }
+)
+
+
+-- to be checked later
+-- https://github.com/windwp/nvim-ts-autotag
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+        underline = true,
+        virtual_text = {
+            spacing = 5,
+            severity_limit = 'Warning',
+        },
+        update_in_insert = true,
+    }
+)
+
